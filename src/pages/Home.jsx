@@ -33,7 +33,7 @@ import { RatingStars } from '../components/common/RatingStars';
 import { useShop } from '../context/ShopContext';
 
 export const Home = () => {
-  const { userLocation, setUserLocation, language } = useShop();
+  const { userLocation, setUserLocation, language, products } = useShop();
   const [heroSearch, setHeroSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const navigate = useNavigate();
@@ -47,8 +47,8 @@ export const Home = () => {
     }
   };
 
-  const freshTodayProducts = PRODUCTS.filter((p) => p.isFreshToday);
-  const bestSellerProducts = PRODUCTS.filter((p) => p.isBestSeller);
+  const freshTodayProducts = products.filter((p) => p.isFreshToday);
+  const bestSellerProducts = products.filter((p) => p.isBestSeller);
 
   return (
     <div className="space-y-16 md:space-y-24 pb-16">

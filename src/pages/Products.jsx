@@ -18,6 +18,7 @@ import { ProductCard } from '../components/common/ProductCard';
 import { SectionHeader } from '../components/common/SectionHeader';
 
 export const Products = () => {
+  const { products } = useShop();
   const [searchParams, setSearchParams] = useSearchParams();
 
   // URL query params
@@ -28,7 +29,7 @@ export const Products = () => {
   // Filter state
   const [searchQuery, setSearchQuery] = useState(initialSearch);
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
-  const [maxPrice, setMaxPrice] = useState(700);
+  const [maxPrice, setMaxPrice] = useState(1200);
   const [minRating, setMinRating] = useState(0);
   const [organicOnly, setOrganicOnly] = useState(false);
   const [sortBy, setSortBy] = useState('popular');
@@ -46,7 +47,7 @@ export const Products = () => {
 
   // Filtering & Sorting Logic
   const filteredProducts = useMemo(() => {
-    return PRODUCTS.filter((item) => {
+    return products.filter((item) => {
       // Category filter
       if (selectedCategory !== 'all' && item.category !== selectedCategory) {
         return false;

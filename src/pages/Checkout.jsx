@@ -16,7 +16,7 @@ import {
 import { useShop } from '../context/ShopContext';
 
 export const Checkout = () => {
-  const { cart, cartSubtotal, deliveryFee, clearCart } = useShop();
+  const { cart, cartSubtotal, deliveryFee, clearCart, addOrder, showToast } = useShop();
 
   // 3-step checkout flow: 1: Address, 2: Payment, 3: Review / Success
   const [step, setStep] = useState(1);
@@ -42,8 +42,36 @@ export const Checkout = () => {
   const handlePlaceOrder = () => {
     const fakeId = `FSK-${Math.floor(100000 + Math.random() * 900000)}`;
     setOrderId(fakeId);
+
+    // Save order into customer history
+    addOrder({
+      id: fakeId,
+      createdAt: new Date().toLocaleString(),
+      items: cart.map(i => ({
+        id: i.id,
+        name: i.name,
+        price: i.price,
+        quantity: i.quantity,
+        unit: i.unit,
+        image: i.image,
+      })),
+      subtotal: cartSubtotal,
+      deliveryFee,
+      total: cartSubtotal + deliveryFee,
+      status: 'Order Placed',
+      customerName: formData.fullName,
+      phone: formData.phone,
+      address: formData.street,
+      city: formData.city,
+      pincode: formData.pincode,
+      paymentMethod: formData.paymentMethod.toUpperCase(),
+      estimatedDelivery: 'Tomorrow morning by 7:30 AM',
+      trackingStep: 1,
+    });
+
     setOrderSuccess(true);
     clearCart();
+    showToast(`Order #${fakeId} confirmed! Sent to farmers.`);
   };
 
   const stepsList = [

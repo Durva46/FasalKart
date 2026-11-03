@@ -25,9 +25,9 @@ import { ProductCard } from '../components/common/ProductCard';
 export const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { addToCart, toggleWishlist, isWishlisted, userLocation } = useShop();
+  const { addToCart, toggleWishlist, isWishlisted, userLocation, products } = useShop();
 
-  const product = PRODUCTS.find((p) => p.id === id) || PRODUCTS[0];
+  const product = products.find((p) => p.id === id) || products[0];
   const farmer = FARMERS.find((f) => f.id === product.farmer.id) || product.farmer;
 
   const [selectedImage, setSelectedImage] = useState(product.image);
@@ -54,7 +54,7 @@ export const ProductDetails = () => {
   };
 
   // Recommended related products
-  const relatedProducts = PRODUCTS.filter(
+  const relatedProducts = products.filter(
     (p) => p.category === product.category && p.id !== product.id
   ).slice(0, 4);
 

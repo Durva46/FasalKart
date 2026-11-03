@@ -241,6 +241,12 @@ export const Navbar = () => {
                 All Produce
               </Link>
               <Link
+                to="/customer-dashboard"
+                className="text-sm font-semibold text-charcoal hover:text-primary dark:text-stone-200 dark:hover:text-emerald-400 transition"
+              >
+                My Orders & Tracking
+              </Link>
+              <Link
                 to="/dashboard"
                 className="text-sm font-semibold text-charcoal hover:text-primary dark:text-stone-200 dark:hover:text-emerald-400 transition"
               >
@@ -294,11 +300,12 @@ export const Navbar = () => {
                 )}
               </motion.button>
 
-              {/* User Account / Login */}
+              {/* User Account / Profile */}
               <Link
-                to="/login"
+                to="/customer-dashboard"
                 className="p-2.5 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-600 dark:text-stone-300 transition hidden sm:flex items-center justify-center"
                 aria-label="User account"
+                title="Customer Dashboard"
               >
                 <User size={18} />
               </Link>

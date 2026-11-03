@@ -14,6 +14,7 @@ import { ProductDetails } from './pages/ProductDetails';
 import { Cart } from './pages/Cart';
 import { Checkout } from './pages/Checkout';
 import { FarmerDashboard } from './pages/FarmerDashboard';
+import { CustomerDashboard } from './pages/CustomerDashboard';
 import { Login } from './pages/Login';
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/dashboard" element={<FarmerDashboard />} />
+          <Route path="/customer-dashboard" element={<CustomerDashboard />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </main>
